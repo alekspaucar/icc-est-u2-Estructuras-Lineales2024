@@ -1,56 +1,57 @@
 package Materia.Stacks;
-import java.util.EmptyStackException;
-import Materia.Models.Node;
 
-public class Stack {
+import Materia.Models.NodeGeneric;
+import java.util.EmptyStackException;
+
+public class Stack<T> {  // Cambiar a Stack<T> para hacerlo genérico
     
-    private Node top;
+    private NodeGeneric<T> top;
     private int size;
 
-    public Stack(){
+    public Stack() {
         this.top = null;
         this.size = 0;
     }
 
-    public void push(int value){
-        Node newNode = new Node(value);
+    public void push(T value) {  // Cambiar a T
+        NodeGeneric<T> newNode = new NodeGeneric<>(value);
         newNode.setNext(top);
         top = newNode;
         size++;
     }
 
-    public int pop(){
-        if(isEmpty()){
+    public T pop() {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
-        int value = top.getValue();
+        T value = top.getValue();
         top = top.getNext();
         size--;
         return value;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return top == null;
     }
 
-    public int peek(){
-        if (isEmpty()){
+    public T peek() {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
         return top.getValue();
     }
 
-    public void printStack(){
-        Node current = top;
+    public void printStack() {
+        NodeGeneric<T> current = top;
         while (current != null) {
             System.out.println(current.getValue());
             current = current.getNext();
         }
     }
 
-    public int getSize(){
+    public int getSize() {
         int cont = 0;
-        Node current = top;
+        NodeGeneric<T> current = top;
         while (current != null) {
             cont++;
             current = current.getNext();
@@ -58,8 +59,17 @@ public class Stack {
         return cont;
     }
 
-    public int getSize2(){
+    public int getSize2() {
         return size;
     }
 
+    public NodeGeneric<T> popNode() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        NodeGeneric<T> value = top;
+        top = top.getNext();
+        size--;
+        return value;
+    }
 }

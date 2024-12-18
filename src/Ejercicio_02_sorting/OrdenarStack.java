@@ -1,11 +1,10 @@
 package Ejercicio_02_sorting;
 
-import java.util.Stack;
+import java.util.Stack;  // Importar la pila estándar de Java
 
 public class OrdenarStack {
     public static void ordenar(Stack<Integer> stack) {
-        
-        Stack<Integer> auxiliar = new Stack<>();
+        Stack<Integer> auxiliar = new Stack<>();  // Usa la pila auxiliar
 
         while (!stack.isEmpty()) {
             int temp = stack.pop();
